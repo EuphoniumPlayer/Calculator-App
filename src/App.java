@@ -6,13 +6,26 @@ public class App implements ActionListener{
 
     JFrame frame;
     JTextField textfield;
+    JTextField sqrtfield;
     JButton[] numberbutton = new JButton[10];
-    JButton[] functionbutton = new JButton[9];
+    JButton[] functionbutton = new JButton[6];
+    JButton[] morefunctionsf = new JButton[9];
+    JButton[] morefunctionss = new JButton[9];
+    JButton[] minipanelbuttons = new JButton[3];
     JButton addbutton,subbutton,mulbutton,divbutton;
     JButton decbutton, equbutton, delbutton, clrbutton, negbutton;
+    JButton degbutton, sqrtbutton, sinbutton, cosbutton, tanbutton, lnbutton, logbutton, pibutton, sqbutton, expbutton;
+    JButton ebutton, radbutton, morebutton, asin, acos, atan, eexp, morebuttons, radbuttons, degbuttons;
     JPanel panel;
+    JPanel minipanel;
+    JPanel panel2;
+    JPanel panel3;
+    boolean degrees = true;
+    boolean sqrton = false;
 
     Font font = new Font("Arial",Font.PLAIN,30);
+    Font smallerfont = new Font("Arial",Font.PLAIN,20);
+    Font smolfont = new Font("Arial",Font.PLAIN,16);
 
     double num1 = 0, num2 = 0, rslt = 0;
     char operator;
@@ -21,7 +34,7 @@ public class App implements ActionListener{
 
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 550);
+        frame.setSize(420, 800);
         frame.setLayout(null);
 
         textfield = new JTextField();
@@ -29,15 +42,45 @@ public class App implements ActionListener{
         textfield.setFont(font);
         textfield.setEditable(false);
 
+        sqrtfield = new JTextField();
+        sqrtfield.setBounds(50, 5, 70, 20);
+        sqrtfield.setFont(smolfont);
+        sqrtfield.setEditable(false);
+
         addbutton = new JButton("+");
         subbutton = new JButton("-");
         mulbutton = new JButton("x");
         divbutton = new JButton("/");
         decbutton = new JButton(".");
         equbutton = new JButton("=");
+
         delbutton = new JButton("del");
         clrbutton = new JButton("clr");
         negbutton = new JButton("+/-");
+
+        radbutton = new JButton("RAD");
+        degbutton = new JButton("DEG");
+        sqrtbutton = new JButton("sqrt");
+        morebutton = new JButton("2nd");
+        expbutton = new JButton("^");
+        sqbutton = new JButton("x^2");
+        sinbutton = new JButton("sin");
+        cosbutton = new JButton("cos");
+        tanbutton = new JButton("tan");
+        asin = new JButton("asin");
+        acos = new JButton("acos");
+        atan = new JButton("atan");
+        lnbutton = new JButton("ln");
+        logbutton = new JButton("log");
+        pibutton = new JButton("π");
+        ebutton = new JButton("e");
+        eexp = new JButton("e^x");
+
+        morebuttons = new JButton("2nd");
+        radbuttons = new JButton("RAD");
+        degbuttons = new JButton("DEG");
+
+        degbutton.addActionListener(this);
 
         functionbutton[0] = addbutton;
         functionbutton[1] = subbutton;
@@ -45,11 +88,32 @@ public class App implements ActionListener{
         functionbutton[3] = divbutton;
         functionbutton[4] = decbutton;
         functionbutton[5] = equbutton;
-        functionbutton[6] = delbutton;
-        functionbutton[7] = clrbutton;
-        functionbutton[8] = negbutton;
 
-        for(int i =0;i<9;i++) {
+        minipanelbuttons[0] = negbutton;
+        minipanelbuttons[1] = delbutton;
+        minipanelbuttons[2] = clrbutton;
+
+        morefunctionsf[0] = morebutton;
+        morefunctionsf[1] = degbutton;
+        morefunctionsf[2] = expbutton;
+        morefunctionsf[3] = sinbutton;
+        morefunctionsf[4] = cosbutton;
+        morefunctionsf[5] = tanbutton;
+        morefunctionsf[6] = sqbutton;
+        morefunctionsf[7] = logbutton;
+        morefunctionsf[8] = pibutton;
+
+        morefunctionss[0] = morebuttons;
+        morefunctionss[1] = degbuttons;
+        morefunctionss[2] = sqrtbutton;
+        morefunctionss[3] = asin;
+        morefunctionss[4] = acos;
+        morefunctionss[5] = atan;
+        morefunctionss[6] = eexp;
+        morefunctionss[7] = lnbutton;
+        morefunctionss[8] = ebutton;
+
+        for(int i =0;i<6;i++) {
             functionbutton[i].addActionListener(this);
             functionbutton[i].setFont(font);
             functionbutton[i].setFocusable(false);
@@ -62,13 +126,43 @@ public class App implements ActionListener{
             numberbutton[i].setFocusable(false);
         }
 
-        negbutton.setBounds(50,430,100,50);
-        delbutton.setBounds(150,430,100,50);
-        clrbutton.setBounds(250,430,100,50);
+        for(int i =0;i<3;i++) {
+            minipanelbuttons[i].addActionListener(this);
+            minipanelbuttons[i].setFont(smallerfont);
+            minipanelbuttons[i].setFocusable(false);
+        }
+
+        for(int i =0;i<9;i++) {
+            morefunctionsf[i].addActionListener(this);
+            morefunctionsf[i].setFont(smallerfont);
+            morefunctionsf[i].setFocusable(false);
+        }
+
+        for(int i =0;i<9;i++) {
+            morefunctionss[i].addActionListener(this);
+            morefunctionss[i].setFont(smallerfont);
+            morefunctionss[i].setFocusable(false);
+        }
+
+        //negbutton.setBounds(50,415,100,50);
+        //delbutton.setBounds(150,415,100,50);
+        //clrbutton.setBounds(250,415,100,50);
 
         panel = new JPanel();
-        panel.setBounds(50, 100, 300, 300);
+        panel.setBounds(50, 160, 300, 300);
         panel.setLayout(new GridLayout(4,4,10,10));
+
+        minipanel = new JPanel();
+        minipanel.setBounds(50, 100, 300, 50);
+        minipanel.setLayout(new GridLayout(1, 3, 10, 10));
+
+        panel2 = new JPanel();
+        panel2.setBounds(50, 490, 300, 231);
+        panel2.setLayout(new GridLayout(3, 4, 10, 10));
+
+        panel3 = new JPanel();
+        panel3.setBounds(50, 490, 300, 231);
+        panel3.setLayout(new GridLayout(3, 4, 10, 10));
 
         panel.add(numberbutton[1]);
         panel.add(numberbutton[2]);
@@ -87,11 +181,23 @@ public class App implements ActionListener{
         panel.add(equbutton);
         panel.add(divbutton);
 
+        for(int i =0;i<9; i++) {
+            panel2.add(morefunctionsf[i]);
+        }
+
+        minipanel.add(negbutton);
+        minipanel.add(delbutton);
+        minipanel.add(clrbutton);
+
+        for(int i =0;i<9;i++) {
+            panel3.add(morefunctionss[i]);
+        }
+
         frame.add(panel);
-        frame.add(negbutton);
-        frame.add(delbutton);
-        frame.add(clrbutton);
+        frame.add(minipanel);
+        frame.add(panel2);
         frame.add(textfield);
+        frame.add(sqrtfield);
         frame.setVisible(true);
 
     }
@@ -131,6 +237,23 @@ public class App implements ActionListener{
             operator = '/';
             textfield.setText("");
         }
+        if(e.getSource() == expbutton) {
+            num1 = Double.parseDouble(textfield.getText());
+            operator = '^';
+            textfield.setText("");
+        }
+        if(e.getSource() == sqrtbutton) {
+            if (!sqrton) {
+                sqrton = true;
+                operator = 'q';
+                sqrtfield.setText("sqrt");
+            } else if (sqrton) {
+                sqrton = false;
+                operator = ' ';
+                sqrtfield.setText("");
+            }
+        }
+        // TODO: All but sqrt
         if(e.getSource() == equbutton) {
             num2 = Double.parseDouble(textfield.getText());
             switch (operator) {
@@ -144,13 +267,29 @@ public class App implements ActionListener{
                     rslt = num1 * num2;
                     break;
                 case '/':
-                    rslt = num1 / num2;
+                    if (num2 == 0) {
+                        textfield.setText("undefined");
+                    } else if (num2 != 0) {
+                        rslt = num1 / num2;
+                    }
+                    break;
+                case '^':
+                    rslt = Math.pow(num1, num2);
+                    break;
+                case 'q':
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.sqrt(num1);
+                    break;
             }
+            if (num2 != 0) {
             textfield.setText(String.valueOf(rslt));
             num1=rslt;
+            }
         }
         if (e.getSource() == clrbutton) {
             textfield.setText("");
+            sqrtfield.setText("");
+            operator = ' ';
         }
         if (e.getSource() == delbutton) {
             String string = textfield.getText();
@@ -163,6 +302,21 @@ public class App implements ActionListener{
             double temp = Double.parseDouble(textfield.getText());
             temp*= -1;
             textfield.setText(String.valueOf(temp));
+        }
+        // TODO: Add actualy functionality to RAD and DEG button
+        if (e.getSource() == morebutton) {
+            frame.repaint();
+            frame.remove(panel2);
+            frame.add(panel3);
+            frame.setVisible(true);
+            frame.repaint();
+        }
+        if (e.getSource() == morebuttons) {
+            frame.repaint();
+            frame.remove(panel3);
+            frame.add(panel2);
+            frame.setVisible(true);
+            frame.repaint();
         }
     }
 }
