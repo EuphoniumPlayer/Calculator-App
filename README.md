@@ -1,0 +1,3 @@
+Hello! This is a basic calculator app that runs using JFrame, so no terminal! Just download the code, open VSCode (or any other Java IDE), hit file, open folder, select the folder labeled Calculator-App, and hit the little triangle in the top right, and you've got a calculator! This is still under development and right now not really worth your time, but in the future I plan to add a lot of features (including stoichiometry)!
+
+Though this project may still seem pointless, the real value of this project is only there for me. I plan to become a software developer, so this is one of the ways I am learning the basics! If you are interesed, I recommend checking out Bro Code on youtube, he has taugh me just about everything! 
