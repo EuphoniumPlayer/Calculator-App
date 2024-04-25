@@ -5,30 +5,30 @@ import java.awt.event.*;
 public class App implements ActionListener{
 
     JFrame frame;
-    JTextField textfield;
-    JTextField sqrtfield;
+    JTextField textfield, sqrtfield, logfield;
     JButton[] numberbutton = new JButton[10];
     JButton[] functionbutton = new JButton[6];
     JButton[] morefunctionsf = new JButton[9];
     JButton[] morefunctionss = new JButton[9];
     JButton[] minipanelbuttons = new JButton[3];
-    JButton addbutton,subbutton,mulbutton,divbutton;
+    JButton addbutton, subbutton, mulbutton, divbutton;
     JButton decbutton, equbutton, delbutton, clrbutton, negbutton;
-    JButton degbutton, sqrtbutton, sinbutton, cosbutton, tanbutton, lnbutton, logbutton, pibutton, sqbutton, expbutton;
+    JButton degbutton, sqrtbutton, sinbutton, cosbutton, tanbutton, logbutton, pibutton, sqbutton, expbutton;
     JButton ebutton, radbutton, morebutton, asin, acos, atan, eexp, morebuttons, radbuttons, degbuttons;
-    JPanel panel;
-    JPanel minipanel;
-    JPanel panel2;
-    JPanel panel3;
+    JButton lnbutton;
+    JPanel panel, minipanel, panel2, panel3;
+
     boolean degrees = true;
     boolean sqrton = false;
+    boolean logon = false;
+    boolean lnon = false;
 
     Font font = new Font("Arial",Font.PLAIN,30);
     Font smallerfont = new Font("Arial",Font.PLAIN,20);
     Font smolfont = new Font("Arial",Font.PLAIN,16);
 
     double num1 = 0, num2 = 0, rslt = 0;
-    char operator;
+    char operator = ' ';
 
     App (){
 
@@ -46,6 +46,11 @@ public class App implements ActionListener{
         sqrtfield.setBounds(50, 5, 70, 20);
         sqrtfield.setFont(smolfont);
         sqrtfield.setEditable(false);
+
+        logfield = new JTextField();
+        logfield.setBounds(130, 5, 70, 20);
+        logfield.setFont(smolfont);
+        logfield.setEditable(false);
 
         addbutton = new JButton("+");
         subbutton = new JButton("-");
@@ -198,6 +203,7 @@ public class App implements ActionListener{
         frame.add(panel2);
         frame.add(textfield);
         frame.add(sqrtfield);
+        frame.add(logfield);
         frame.setVisible(true);
 
     }
@@ -245,12 +251,54 @@ public class App implements ActionListener{
         if(e.getSource() == sqrtbutton) {
             if (!sqrton) {
                 sqrton = true;
+                logon = false;
+                lnon = false;
+                logfield.setText("");
                 operator = 'q';
                 sqrtfield.setText("sqrt");
             } else if (sqrton) {
                 sqrton = false;
                 operator = ' ';
                 sqrtfield.setText("");
+            }
+        }
+        if(e.getSource() == pibutton) {
+            textfield.setText(String.valueOf(Math.PI));
+        }
+        if(e.getSource() == ebutton) {
+            textfield.setText(String.valueOf(Math.E));
+        }
+        if(e.getSource() == sqbutton) {
+            num1 = Double.parseDouble(textfield.getText());
+            textfield.setText(String.valueOf(Math.pow(num1, 2)));
+        }
+        if(e.getSource() == logbutton) {
+            if (!logon) {
+                logon = true;
+                sqrton = false;
+                lnon = false;
+                sqrtfield.setText("");
+                operator = 'l';
+                logfield.setText("log");
+            } else if (logon) {
+                logon = false;
+                operator = ' ';
+                logfield.setText("");
+            }
+        
+        }
+        if(e.getSource() == lnbutton) {
+            if (!lnon) {
+                lnon = true;
+                logon = false;
+                sqrton = false;
+                sqrtfield.setText("");
+                operator = 'n';
+                logfield.setText("ln");
+            } else if (lnon) {
+                lnon = false;
+                operator = ' ';
+                logfield.setText("");
             }
         }
         // TODO: All but sqrt
@@ -280,8 +328,19 @@ public class App implements ActionListener{
                     num1 = Double.parseDouble(textfield.getText());
                     rslt = Math.sqrt(num1);
                     break;
+                case 'l':
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.log(num1);
+                    break;
+                case 'n':
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = (Math.log(num1) / Math.E);
+                    break;
+                default:
+                    rslt = Double.parseDouble(textfield.getText());
+                    break;
             }
-            if (num2 != 0) {
+            if (num2 != 0 | operator != '/') {
             textfield.setText(String.valueOf(rslt));
             num1=rslt;
             }
