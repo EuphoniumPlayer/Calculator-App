@@ -301,6 +301,9 @@ public class App implements ActionListener{
                 logfield.setText("");
             }
         }
+        if(e.getSource() == eexp) {
+            operator = 'e';
+        }
         // TODO: All but sqrt
         if(e.getSource() == equbutton) {
             num2 = Double.parseDouble(textfield.getText());
@@ -334,7 +337,11 @@ public class App implements ActionListener{
                     break;
                 case 'n':
                     num1 = Double.parseDouble(textfield.getText());
-                    rslt = (Math.log(num1) / Math.E);
+                    rslt = (Math.log(num1) / Math.log(Math.E));
+                    break;
+                case 'e':
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = (Math.pow(Math.E, num1));
                     break;
                 default:
                     rslt = Double.parseDouble(textfield.getText());
