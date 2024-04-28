@@ -32,6 +32,7 @@ public class Selector implements ActionListener{
         calc.setFont(font);
         chem.setFocusable(false);
 
+        frame.setVisible(true);
     }
 
     private static Calculator calculator;
