@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class App implements ActionListener{
+public class Calculator implements ActionListener{
 
     JFrame frame;
     JTextField textfield, sqrtfield, logfield;
@@ -30,7 +30,7 @@ public class App implements ActionListener{
     double num1 = 0, num2 = 0, rslt = 0;
     char operator = ' ';
 
-    App (){
+    Calculator (){
 
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -206,10 +206,6 @@ public class App implements ActionListener{
         frame.add(logfield);
         frame.setVisible(true);
 
-    }
-
-    public static void main(String[] args) {
-        App app = new App();
     }
 
     @Override
