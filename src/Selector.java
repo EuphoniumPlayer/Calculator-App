@@ -15,7 +15,7 @@ public class Selector implements ActionListener {
         
         frame = new JFrame("Selection Menu");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 800);
+        frame.setSize(420, 820);
         frame.setLayout(null);
 
         textfield = new JTextField();
@@ -45,7 +45,7 @@ public class Selector implements ActionListener {
         frame.setVisible(true);
     }
 
-    public void returned () {
+    public void reset () {
         frame.setVisible(true);
     }
 

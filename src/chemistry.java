@@ -7,13 +7,13 @@ public class chemistry implements ActionListener {
     JTextField textfield;
     JButton returnbut;
     //TODO: Add buttons and panel
-    Selector sel = new Selector();
+    private Selector sel = new Selector();
 
     chemistry () {
 
-        frame = new JFrame("Chemistry");
+        frame = new JFrame("Under Contruction");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 800);
+        frame.setSize(420, 820);
         frame.setLayout(null);
 
         textfield = new JTextField();
@@ -37,7 +37,7 @@ public class chemistry implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == returnbut) {
-            sel.returned();
+            sel.reset();
             frame.setVisible(false);
         }
     }

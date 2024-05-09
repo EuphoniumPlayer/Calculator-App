@@ -15,7 +15,7 @@ public class Calculator implements ActionListener{
     JButton decbutton, equbutton, delbutton, clrbutton, negbutton;
     JButton degbutton, sqrtbutton, sinbutton, cosbutton, tanbutton, logbutton, pibutton, sqbutton, expbutton;
     JButton ebutton, radbutton, morebutton, asin, acos, atan, eexp, morebuttons, radbuttons, degbuttons;
-    JButton lnbutton;
+    JButton lnbutton, returnbut;
     JPanel panel, minipanel, panel2, panel3;
 
     boolean degrees = true;
@@ -30,11 +30,15 @@ public class Calculator implements ActionListener{
     double num1 = 0, num2 = 0, rslt = 0;
     char operator = ' ';
 
+    void reset () {
+        frame.setVisible(true);
+    }
+
     Calculator (){
 
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 800);
+        frame.setSize(420, 820);
         frame.setLayout(null);
 
         textfield = new JTextField();
@@ -85,7 +89,11 @@ public class Calculator implements ActionListener{
         radbuttons = new JButton("RAD");
         degbuttons = new JButton("DEG");
 
-        degbutton.addActionListener(this);
+        returnbut = new JButton("Return");
+        returnbut.setFont(new Font("Arial",Font.BOLD,30));
+        returnbut.addActionListener(this);
+        returnbut.setBounds(50, 735, 300, 45);
+        returnbut.setFocusable(false);
 
         functionbutton[0] = addbutton;
         functionbutton[1] = subbutton;
@@ -162,11 +170,11 @@ public class Calculator implements ActionListener{
         minipanel.setLayout(new GridLayout(1, 3, 10, 10));
 
         panel2 = new JPanel();
-        panel2.setBounds(50, 490, 300, 231);
+        panel2.setBounds(50, 490, 300, 230);
         panel2.setLayout(new GridLayout(3, 4, 10, 10));
 
         panel3 = new JPanel();
-        panel3.setBounds(50, 490, 300, 231);
+        panel3.setBounds(50, 490, 300, 230);
         panel3.setLayout(new GridLayout(3, 4, 10, 10));
 
         panel.add(numberbutton[1]);
@@ -204,9 +212,12 @@ public class Calculator implements ActionListener{
         frame.add(textfield);
         frame.add(sqrtfield);
         frame.add(logfield);
+        frame.add(returnbut);
         frame.setVisible(true);
 
     }
+
+    private static Selector sel = new Selector();
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -379,6 +390,10 @@ public class Calculator implements ActionListener{
             frame.add(panel2);
             frame.setVisible(true);
             frame.repaint();
+        }
+        if(e.getSource() == returnbut) {
+            sel.reset();
+            frame.setVisible(false);
         }
     }
 }
