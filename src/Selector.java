@@ -1,6 +1,6 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.*;
 
 public class Selector implements ActionListener {
 
@@ -9,7 +9,7 @@ public class Selector implements ActionListener {
     JButton calc, chem;
     JPanel buttonpanel;
 
-    Font font = new Font("Arial",Font.PLAIN,25);
+    Font font = new Font("Arial",Font.PLAIN,24);
 
     Selector () {
         
