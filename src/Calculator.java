@@ -58,10 +58,10 @@ public class Calculator implements ActionListener{
     Calculator (){
 
         // Calculator parts
-        
+
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420+800, 800);
+        frame.setSize(420+775, 800);
         frame.setLayout(null);
 
         textfield = new JTextField();
