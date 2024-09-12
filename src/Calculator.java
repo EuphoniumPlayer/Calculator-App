@@ -30,8 +30,6 @@ public class Calculator implements ActionListener{
     boolean acoson = false;
     boolean atanon = false;
 
-    //Memory memory = new Memory();
-
     Font font = new Font("Arial",Font.PLAIN,30);
     Font smallerfont = new Font("Arial",Font.PLAIN,20);
     Font smolfont = new Font("Arial",Font.PLAIN,16);
@@ -58,7 +56,9 @@ public class Calculator implements ActionListener{
     double m10 = 0;
 
     Calculator (){
+
         // Calculator parts
+        
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420+800, 800);
@@ -181,10 +181,6 @@ public class Calculator implements ActionListener{
             morefunctionss[i].setFocusable(false);
         }
 
-        //negbutton.setBounds(50,415,100,50);
-        //delbutton.setBounds(150,415,100,50);
-        //clrbutton.setBounds(250,415,100,50);
-
         panel = new JPanel();
         panel.setBounds(50, 160, 300, 300);
         panel.setLayout(new GridLayout(4,4,10,10));
@@ -239,11 +235,6 @@ public class Calculator implements ActionListener{
         frame.add(trigfield);
 
         //Memory parts
-   /*     memoryframe = new JFrame("Memory");
-		memoryframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		memoryframe.setSize(800, 675);
-		memoryframe.setLayout(null);
-        memoryframe.setLocation(410, 0); */
 
         mem1 = new JTextField("0.0");
         mem2 = new JTextField("0.0");
@@ -279,18 +270,7 @@ public class Calculator implements ActionListener{
         frame.add(mem8);
         frame.add(mem9);
         frame.add(mem10);
-/*
-        memoryframe.add(mem1);
-        memoryframe.add(mem2);
-        memoryframe.add(mem3);
-        memoryframe.add(mem4);
-        memoryframe.add(mem5);
-        memoryframe.add(mem6);
-        memoryframe.add(mem7);
-        memoryframe.add(mem8);
-        memoryframe.add(mem9);
-        memoryframe.add(mem10);
-*/
+
         mem1.setFont(font);
         mem2.setFont(font);
         mem3.setFont(font);
@@ -367,18 +347,7 @@ public class Calculator implements ActionListener{
         frame.add(recall8);
         frame.add(recall9);
         frame.add(recall10);
-/*
-        memoryframe.add(recall1);
-        memoryframe.add(recall2);
-        memoryframe.add(recall3);
-        memoryframe.add(recall4);
-        memoryframe.add(recall5);
-        memoryframe.add(recall6);
-        memoryframe.add(recall7);
-        memoryframe.add(recall8);
-        memoryframe.add(recall9);
-        memoryframe.add(recall10);
-*/
+
         recall1.setFont(font);
         recall2.setFont(font);
         recall3.setFont(font);
@@ -404,13 +373,11 @@ public class Calculator implements ActionListener{
         clear = new JButton("Memory Reset");
         clear.addActionListener(this);
         clear.setBounds(50+350, 550, 700, 50);
-        //memoryframe.add(clear);
         frame.add(clear);
         clear.setFont(font);
         clear.setFocusable(false);
 
         // Make both frames visible
-        //memoryframe.setVisible(true);
         frame.setVisible(true);
 
     }
