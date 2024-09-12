@@ -377,7 +377,6 @@ public class Calculator implements ActionListener{
         clear.setFont(font);
         clear.setFocusable(false);
 
-        // Make both frames visible
         frame.setVisible(true);
 
     }
