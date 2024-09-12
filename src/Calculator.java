@@ -61,7 +61,7 @@ public class Calculator implements ActionListener{
         // Calculator parts
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(420, 800);
+        frame.setSize(420+800, 800);
         frame.setLayout(null);
 
         textfield = new JTextField();
@@ -239,11 +239,11 @@ public class Calculator implements ActionListener{
         frame.add(trigfield);
 
         //Memory parts
-        memoryframe = new JFrame("Memory");
+   /*     memoryframe = new JFrame("Memory");
 		memoryframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		memoryframe.setSize(800, 675);
 		memoryframe.setLayout(null);
-        memoryframe.setLocation(410, 0);
+        memoryframe.setLocation(410, 0); */
 
         mem1 = new JTextField("0.0");
         mem2 = new JTextField("0.0");
@@ -255,18 +255,31 @@ public class Calculator implements ActionListener{
         mem8 = new JTextField("0.0");
         mem9 = new JTextField("0.0");
         mem10 = new JTextField("0.0");
-//
-        mem1.setBounds(50, 25, 550, 50);
-        mem2.setBounds(50, 75, 550, 50);
-        mem3.setBounds(50, 125, 550, 50);
-        mem4.setBounds(50, 175, 550, 50);
-        mem5.setBounds(50, 225, 550, 50);
-        mem6.setBounds(50, 275, 550, 50);
-        mem7.setBounds(50, 325, 550, 50);
-        mem8.setBounds(50, 375, 550, 50);
-        mem9.setBounds(50, 425, 550, 50);
-        mem10.setBounds(50, 475, 550, 50);
 
+
+
+        mem1.setBounds(50+350, 25, 550, 50);
+        mem2.setBounds(50+350, 75, 550, 50);
+        mem3.setBounds(50+350, 125, 550, 50);
+        mem4.setBounds(50+350, 175, 550, 50);
+        mem5.setBounds(50+350, 225, 550, 50);
+        mem6.setBounds(50+350, 275, 550, 50);
+        mem7.setBounds(50+350, 325, 550, 50);
+        mem8.setBounds(50+350, 375, 550, 50);
+        mem9.setBounds(50+350, 425, 550, 50);
+        mem10.setBounds(50+350, 475, 550, 50);
+
+        frame.add(mem1);
+        frame.add(mem2);
+        frame.add(mem3);
+        frame.add(mem4);
+        frame.add(mem5);
+        frame.add(mem6);
+        frame.add(mem7);
+        frame.add(mem8);
+        frame.add(mem9);
+        frame.add(mem10);
+/*
         memoryframe.add(mem1);
         memoryframe.add(mem2);
         memoryframe.add(mem3);
@@ -277,7 +290,7 @@ public class Calculator implements ActionListener{
         memoryframe.add(mem8);
         memoryframe.add(mem9);
         memoryframe.add(mem10);
-
+*/
         mem1.setFont(font);
         mem2.setFont(font);
         mem3.setFont(font);
@@ -333,17 +346,28 @@ public class Calculator implements ActionListener{
         recall9.addActionListener(this);
         recall10.addActionListener(this);
 
-        recall1.setBounds(625, 25, 125, 50);
-        recall2.setBounds(625, 75, 125, 50);
-        recall3.setBounds(625, 125, 125, 50);
-        recall4.setBounds(625, 175, 125, 50);
-        recall5.setBounds(625, 225, 125, 50);
-        recall6.setBounds(625, 275, 125, 50);
-        recall7.setBounds(625, 325, 125, 50);
-        recall8.setBounds(625, 375, 125, 50);
-        recall9.setBounds(625, 425, 125, 50);
-        recall10.setBounds(625, 475, 125, 50);
+        recall1.setBounds(625+350, 25, 125, 50);
+        recall2.setBounds(625+350, 75, 125, 50);
+        recall3.setBounds(625+350, 125, 125, 50);
+        recall4.setBounds(625+350, 175, 125, 50);
+        recall5.setBounds(625+350, 225, 125, 50);
+        recall6.setBounds(625+350, 275, 125, 50);
+        recall7.setBounds(625+350, 325, 125, 50);
+        recall8.setBounds(625+350, 375, 125, 50);
+        recall9.setBounds(625+350, 425, 125, 50);
+        recall10.setBounds(625+350, 475, 125, 50);
 
+        frame.add(recall1);
+        frame.add(recall2);
+        frame.add(recall3);
+        frame.add(recall4);
+        frame.add(recall5);
+        frame.add(recall6);
+        frame.add(recall7);
+        frame.add(recall8);
+        frame.add(recall9);
+        frame.add(recall10);
+/*
         memoryframe.add(recall1);
         memoryframe.add(recall2);
         memoryframe.add(recall3);
@@ -354,7 +378,7 @@ public class Calculator implements ActionListener{
         memoryframe.add(recall8);
         memoryframe.add(recall9);
         memoryframe.add(recall10);
-
+*/
         recall1.setFont(font);
         recall2.setFont(font);
         recall3.setFont(font);
@@ -379,13 +403,14 @@ public class Calculator implements ActionListener{
 
         clear = new JButton("Memory Reset");
         clear.addActionListener(this);
-        clear.setBounds(50, 550, 700, 50);
-        memoryframe.add(clear);
+        clear.setBounds(50+350, 550, 700, 50);
+        //memoryframe.add(clear);
+        frame.add(clear);
         clear.setFont(font);
         clear.setFocusable(false);
 
         // Make both frames visible
-        memoryframe.setVisible(true);
+        //memoryframe.setVisible(true);
         frame.setVisible(true);
 
     }
@@ -417,7 +442,7 @@ public class Calculator implements ActionListener{
         mem9.setText(String.valueOf(m9));
         mem10.setText(String.valueOf(m10));
 
-        System.out.println("Memory updated");
+        System.out.println("Memory reset");
     }
 
     @Override
@@ -485,6 +510,8 @@ public class Calculator implements ActionListener{
             mem8.setText("0.0");
             mem9.setText("0.0");
             mem10.setText("0.0");
+
+            textfield.setText("");
 
             System.out.println("RAM cleared");
         }
