@@ -4,8 +4,9 @@ import java.awt.event.*;
 
 public class Calculator implements ActionListener{
 
+    //Calculator components
     JFrame frame;
-    JTextField textfield, sqrtfield, logfield;
+    JTextField textfield, sqrtfield, logfield, trigfield;
     JButton[] numberbutton = new JButton[10];
     JButton[] functionbutton = new JButton[6];
     JButton[] morefunctionsf = new JButton[9];
@@ -22,16 +23,42 @@ public class Calculator implements ActionListener{
     boolean sqrton = false;
     boolean logon = false;
     boolean lnon = false;
+    boolean sinon = false;
+    boolean coson = false;
+    boolean tanon = false;
+    boolean asinon = false;
+    boolean acoson = false;
+    boolean atanon = false;
+
+    //Memory memory = new Memory();
 
     Font font = new Font("Arial",Font.PLAIN,30);
     Font smallerfont = new Font("Arial",Font.PLAIN,20);
     Font smolfont = new Font("Arial",Font.PLAIN,16);
 
-    double num1 = 0, num2 = 0, rslt = 0;
-    char operator = ' ';
+    double num1 = 0;
+    double num2 = 0;
+    double rslt = 0;
+    String operator = "";
+
+    // Memory components
+    JFrame memoryframe;
+    JTextField mem1, mem2, mem3, mem4, mem5, mem6, mem7, mem8, mem9, mem10;
+	JButton recall1, recall2, recall3, recall4, recall5, recall6, recall7, recall8, recall9, recall10, clear;
+
+    double m1 = 0;
+    double m2 = 0;
+    double m3 = 0;
+    double m4 = 0;
+    double m5 = 0;
+    double m6 = 0;
+    double m7 = 0;
+    double m8 = 0;
+    double m9 = 0;
+    double m10 = 0;
 
     Calculator (){
-
+        // Calculator parts
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(420, 800);
@@ -52,6 +79,11 @@ public class Calculator implements ActionListener{
         logfield.setFont(smolfont);
         logfield.setEditable(false);
 
+        trigfield = new JTextField();
+        trigfield.setBounds(210, 5, 70, 20);
+        trigfield.setFont(smolfont);
+        trigfield.setEditable(false);
+
         addbutton = new JButton("+");
         subbutton = new JButton("-");
         mulbutton = new JButton("x");
@@ -65,7 +97,7 @@ public class Calculator implements ActionListener{
 
         radbutton = new JButton("RAD");
         degbutton = new JButton("DEG");
-        sqrtbutton = new JButton("sqrt");
+        sqrtbutton = new JButton("√");
         morebutton = new JButton("2nd");
         expbutton = new JButton("^");
         sqbutton = new JButton("x^2");
@@ -204,13 +236,260 @@ public class Calculator implements ActionListener{
         frame.add(textfield);
         frame.add(sqrtfield);
         frame.add(logfield);
+        frame.add(trigfield);
+
+        //Memory parts
+        memoryframe = new JFrame("Memory");
+		memoryframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		memoryframe.setSize(800, 675);
+		memoryframe.setLayout(null);
+        memoryframe.setLocation(410, 0);
+
+        mem1 = new JTextField("0.0");
+        mem2 = new JTextField("0.0");
+        mem3 = new JTextField("0.0");
+        mem4 = new JTextField("0.0");
+        mem5 = new JTextField("0.0");
+        mem6 = new JTextField("0.0");
+        mem7 = new JTextField("0.0");
+        mem8 = new JTextField("0.0");
+        mem9 = new JTextField("0.0");
+        mem10 = new JTextField("0.0");
+//
+        mem1.setBounds(50, 25, 550, 50);
+        mem2.setBounds(50, 75, 550, 50);
+        mem3.setBounds(50, 125, 550, 50);
+        mem4.setBounds(50, 175, 550, 50);
+        mem5.setBounds(50, 225, 550, 50);
+        mem6.setBounds(50, 275, 550, 50);
+        mem7.setBounds(50, 325, 550, 50);
+        mem8.setBounds(50, 375, 550, 50);
+        mem9.setBounds(50, 425, 550, 50);
+        mem10.setBounds(50, 475, 550, 50);
+
+        memoryframe.add(mem1);
+        memoryframe.add(mem2);
+        memoryframe.add(mem3);
+        memoryframe.add(mem4);
+        memoryframe.add(mem5);
+        memoryframe.add(mem6);
+        memoryframe.add(mem7);
+        memoryframe.add(mem8);
+        memoryframe.add(mem9);
+        memoryframe.add(mem10);
+
+        mem1.setFont(font);
+        mem2.setFont(font);
+        mem3.setFont(font);
+        mem4.setFont(font);
+        mem5.setFont(font);
+        mem6.setFont(font);
+        mem7.setFont(font);
+        mem8.setFont(font);
+        mem9.setFont(font);
+        mem10.setFont(font);
+
+        mem1.setEditable(false);
+        mem2.setEditable(false);
+        mem3.setEditable(false);
+        mem4.setEditable(false);
+        mem5.setEditable(false);
+        mem6.setEditable(false);
+        mem7.setEditable(false);
+        mem8.setEditable(false);
+        mem9.setEditable(false);
+        mem10.setEditable(false);
+
+        mem1.setFocusable(false);
+        mem2.setFocusable(false);
+        mem3.setFocusable(false);
+        mem4.setFocusable(false);
+        mem5.setFocusable(false);
+        mem6.setFocusable(false);
+        mem7.setFocusable(false);
+        mem8.setFocusable(false);
+        mem9.setFocusable(false);
+        mem10.setFocusable(false);
+
+        recall1 = new JButton("Recall");
+        recall2 = new JButton("Recall");
+        recall3 = new JButton("Recall");
+        recall4 = new JButton("Recall");
+        recall5 = new JButton("Recall");
+        recall6 = new JButton("Recall");
+        recall7 = new JButton("Recall");
+        recall8 = new JButton("Recall");
+        recall9 = new JButton("Recall");
+        recall10 = new JButton("Recall");
+
+        recall1.addActionListener(this);
+        recall2.addActionListener(this);
+        recall3.addActionListener(this);
+        recall4.addActionListener(this);
+        recall5.addActionListener(this);
+        recall6.addActionListener(this);
+        recall7.addActionListener(this);
+        recall8.addActionListener(this);
+        recall9.addActionListener(this);
+        recall10.addActionListener(this);
+
+        recall1.setBounds(625, 25, 125, 50);
+        recall2.setBounds(625, 75, 125, 50);
+        recall3.setBounds(625, 125, 125, 50);
+        recall4.setBounds(625, 175, 125, 50);
+        recall5.setBounds(625, 225, 125, 50);
+        recall6.setBounds(625, 275, 125, 50);
+        recall7.setBounds(625, 325, 125, 50);
+        recall8.setBounds(625, 375, 125, 50);
+        recall9.setBounds(625, 425, 125, 50);
+        recall10.setBounds(625, 475, 125, 50);
+
+        memoryframe.add(recall1);
+        memoryframe.add(recall2);
+        memoryframe.add(recall3);
+        memoryframe.add(recall4);
+        memoryframe.add(recall5);
+        memoryframe.add(recall6);
+        memoryframe.add(recall7);
+        memoryframe.add(recall8);
+        memoryframe.add(recall9);
+        memoryframe.add(recall10);
+
+        recall1.setFont(font);
+        recall2.setFont(font);
+        recall3.setFont(font);
+        recall4.setFont(font);
+        recall5.setFont(font);
+        recall6.setFont(font);
+        recall7.setFont(font);
+        recall8.setFont(font);
+        recall9.setFont(font);
+        recall10.setFont(font);
+
+        recall1.setFocusable(false);
+        recall2.setFocusable(false);
+        recall3.setFocusable(false);
+        recall4.setFocusable(false);
+        recall5.setFocusable(false);
+        recall6.setFocusable(false);
+        recall7.setFocusable(false);
+        recall8.setFocusable(false);
+        recall9.setFocusable(false);
+        recall10.setFocusable(false);
+
+        clear = new JButton("Memory Reset");
+        clear.addActionListener(this);
+        clear.setBounds(50, 550, 700, 50);
+        memoryframe.add(clear);
+        clear.setFont(font);
+        clear.setFocusable(false);
+
+        // Make both frames visible
+        memoryframe.setVisible(true);
         frame.setVisible(true);
 
     }
 
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+    } 
+
+    void updateMemory () {
+        m10 = m9;
+        m9 = m8;
+        m8 = m7;
+        m7 = m6;
+        m6 = m5;
+        m5 = m4;
+        m4 = m3;
+        m3 = m2;
+        m2 = m1;
+        m1 = rslt;
+
+        mem1.setText(String.valueOf(m1));
+        mem2.setText(String.valueOf(m2));
+        mem3.setText(String.valueOf(m3));
+        mem4.setText(String.valueOf(m4));
+        mem5.setText(String.valueOf(m5));
+        mem6.setText(String.valueOf(m6));
+        mem7.setText(String.valueOf(m7));
+        mem8.setText(String.valueOf(m8));
+        mem9.setText(String.valueOf(m9));
+        mem10.setText(String.valueOf(m10));
+
+        System.out.println("Memory updated");
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+        // Memory functions
+        if(e.getSource() == recall1) {
+			textfield.setText(String.valueOf(m1));
+            System.out.println("Recalled memory 1");
+		}
+        if(e.getSource() == recall2) {
+            textfield.setText(String.valueOf(m2));
+            System.out.println("Recalled memory 2");
+        }
+        if(e.getSource() == recall3) {
+            textfield.setText(String.valueOf(m3));
+            System.out.println("Recalled memory 3");
+        }
+        if(e.getSource() == recall4) {
+            textfield.setText(String.valueOf(m4));
+            System.out.println("Recalled memory 4");
+        }
+        if(e.getSource() == recall5) {
+            textfield.setText(String.valueOf(m5));
+            System.out.println("Recalled memory 5");
+        }
+        if(e.getSource() == recall6) {
+            textfield.setText(String.valueOf(m6));
+            System.out.println("Recalled memory 6");
+        }
+        if(e.getSource() == recall7) {
+            textfield.setText(String.valueOf(m7));
+            System.out.println("Recalled memory 7");
+        }
+        if(e.getSource() == recall8) {
+            textfield.setText(String.valueOf(m8));
+            System.out.println("Recalled memory 8");
+        }
+        if(e.getSource() == recall9) {
+            textfield.setText(String.valueOf(m9));
+            System.out.println("Recalled memory 9");
+        }
+        if(e.getSource() == recall10) {
+            textfield.setText(String.valueOf(m10));
+            System.out.println("Recalled memory 10");
+        }
+        if(e.getSource() == clear) {
+            m1 = 0;
+            m2 = 0;
+            m3 = 0;
+            m4 = 0;
+            m5 = 0;
+            m6 = 0;
+            m7 = 0;
+            m8 = 0;
+            m9 = 0;
+            m10 = 0;
 
+            mem1.setText("0.0");
+            mem2.setText("0.0");
+            mem3.setText("0.0");
+            mem4.setText("0.0");
+            mem5.setText("0.0");
+            mem6.setText("0.0");
+            mem7.setText("0.0");
+            mem8.setText("0.0");
+            mem9.setText("0.0");
+            mem10.setText("0.0");
+
+            System.out.println("RAM cleared");
+        }
+
+        // Calculator functions
         for(int i=0;i<10;i++) {
             if(e.getSource() == numberbutton[i]) {
                 textfield.setText(textfield.getText().concat(String.valueOf(i)));
@@ -221,27 +500,28 @@ public class Calculator implements ActionListener{
         }
         if(e.getSource() == addbutton) {
             num1 = Double.parseDouble(textfield.getText());
-            operator = '+';
+            operator = "+";
             textfield.setText("");
         }
         if(e.getSource() == subbutton) {
             num1 = Double.parseDouble(textfield.getText());
-            operator = '-';
+            operator = "-";
             textfield.setText("");
         }
         if(e.getSource() == mulbutton) {
             num1 = Double.parseDouble(textfield.getText());
-            operator = '*';
+            operator = "*";
             textfield.setText("");
         }
         if(e.getSource() == divbutton) {
             num1 = Double.parseDouble(textfield.getText());
-            operator = '/';
+            operator = "/";
             textfield.setText("");
         }
+        // Extra functions
         if(e.getSource() == expbutton) {
             num1 = Double.parseDouble(textfield.getText());
-            operator = '^';
+            operator = "^";
             textfield.setText("");
         }
         if(e.getSource() == sqrtbutton) {
@@ -250,11 +530,11 @@ public class Calculator implements ActionListener{
                 logon = false;
                 lnon = false;
                 logfield.setText("");
-                operator = 'q';
+                operator = "q";
                 sqrtfield.setText("sqrt");
             } else if (sqrton) {
                 sqrton = false;
-                operator = ' ';
+                operator = "";
                 sqrtfield.setText("");
             }
         }
@@ -274,14 +554,14 @@ public class Calculator implements ActionListener{
                 sqrton = false;
                 lnon = false;
                 sqrtfield.setText("");
-                operator = 'l';
+                operator = "l";
                 logfield.setText("log");
             } else if (logon) {
                 logon = false;
-                operator = ' ';
+                operator = "";
                 logfield.setText("");
             }
-        
+
         }
         if(e.getSource() == lnbutton) {
             if (!lnon) {
@@ -289,69 +569,198 @@ public class Calculator implements ActionListener{
                 logon = false;
                 sqrton = false;
                 sqrtfield.setText("");
-                operator = 'n';
+                operator = "n";
                 logfield.setText("ln");
             } else if (lnon) {
                 lnon = false;
-                operator = ' ';
+                operator = "";
                 logfield.setText("");
             }
         }
         if(e.getSource() == eexp) {
-            operator = 'e';
+            operator = "e";
         }
-        // TODO: All but sqrt
+        if(e.getSource() == sinbutton) {
+            if(!sinon) {
+                sinon = true;
+                coson = false;
+                tanon = false;
+                asinon = false;
+                acoson = false;
+                atanon = false;
+                trigfield.setText("");
+                operator = "S";
+                trigfield.setText("sin");
+            } else if (sinon) {
+                sinon = false;
+                operator = "";
+                trigfield.setText("");
+            }
+        }
+        if(e.getSource() == cosbutton) {
+            if(!coson) {
+                coson = true;
+                sinon = false;
+                tanon = false;
+                asinon = false;
+                acoson = false;
+                atanon = false;
+                trigfield.setText("");
+                operator = "C";
+                trigfield.setText("cos");
+            } else if (coson) {
+                coson = false;
+                operator = "";
+                trigfield.setText("");
+            }
+        }
+        if(e.getSource() == tanbutton) {
+            if(!tanon) {
+                tanon = true;
+                sinon = false;
+                coson = false;
+                asinon = false;
+                acoson = false;
+                atanon = false;
+                trigfield.setText("");
+                operator = "T";
+                trigfield.setText("tan");
+            } else if (tanon) {
+                tanon = false;
+                operator = "";
+                trigfield.setText("");
+            }
+        }
+        if(e.getSource() == asin) {
+            if(!asinon) {
+                sinon = false;
+                coson = false;
+                tanon = false;
+                asinon = true;
+                acoson = false;
+                atanon = false;
+                trigfield.setText("asin");
+                operator = "as";
+            }
+            if (asinon) {
+                asinon = false;
+                operator = "";
+                trigfield.setText("");
+            }
+        }
+        if(e.getSource() == acos) {
+            if(!acoson) {
+                coson = false;
+                sinon = false;
+                tanon = false;
+                asinon = false;
+                acoson = true;
+                atanon = false;
+                trigfield.setText("acos");
+                operator = "ac";
+            }
+            if (acoson) {
+                acoson = false;
+                operator = "";
+                trigfield.setText("");
+            }
+        }
+        if(e.getSource() == atan) {
+            if(!atanon) {
+                coson = false;
+                sinon = false;
+                tanon = false;
+                asinon = false;
+                acoson = false;
+                atanon = true;
+                trigfield.setText("atan");
+                operator = "at";
+            }
+            if (atanon) {
+                atanon = false;
+                operator = "";
+                trigfield.setText("");
+            }
+        }
         if(e.getSource() == equbutton) {
             num2 = Double.parseDouble(textfield.getText());
             switch (operator) {
-                case '+':
+                case "+":
                     rslt = num1 + num2;
                     break;
-                case '-':
+                case "-":
                     rslt = num1 - num2;
                     break;
-                case '*':
+                case "*":
                     rslt = num1 * num2;
                     break;
-                case '/':
+                case "/":
                     if (num2 == 0) {
                         textfield.setText("undefined");
                     } else if (num2 != 0) {
                         rslt = num1 / num2;
                     }
                     break;
-                case '^':
+                case "^":
                     rslt = Math.pow(num1, num2);
                     break;
-                case 'q':
+                case "q":
                     num1 = Double.parseDouble(textfield.getText());
                     rslt = Math.sqrt(num1);
                     break;
-                case 'l':
+                case "l":
                     num1 = Double.parseDouble(textfield.getText());
                     rslt = Math.log(num1);
                     break;
-                case 'n':
+                case "n":
                     num1 = Double.parseDouble(textfield.getText());
                     rslt = (Math.log(num1) / Math.log(Math.E));
                     break;
-                case 'e':
+                case "e":
                     num1 = Double.parseDouble(textfield.getText());
                     rslt = (Math.pow(Math.E, num1));
+                    break;
+                case "S":
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.sin(Math.toDegrees(num1));
+                    break;
+                case "C":
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.cos(Math.toDegrees(num1));
+                    break;
+                case "T":
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.tan(Math.toDegrees(num1));
+                    break;
+                case "as":
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.asin(num1);
+                    break;
+                case "ac":
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.acos(num1);
+                    break;
+                case "at":
+                    num1 = Double.parseDouble(textfield.getText());
+                    rslt = Math.atan(num1);
                     break;
                 default:
                     rslt = Double.parseDouble(textfield.getText());
                     break;
             }
-            if (num2 != 0 | operator != '/') {
+            if (num2 != 0 | operator != "/") {
             textfield.setText(String.valueOf(rslt));
             num1=rslt;
             }
+
+            // Run Memory Update
+            updateMemory();
         }
         if (e.getSource() == clrbutton) {
             textfield.setText("");
             sqrtfield.setText("");
-            operator = ' ';
+            trigfield.setText("");
+            operator = "";
         }
         if (e.getSource() == delbutton) {
             String string = textfield.getText();
@@ -380,5 +789,6 @@ public class Calculator implements ActionListener{
             frame.setVisible(true);
             frame.repaint();
         }
+        // TODO: Make the rest of the buttons functional
     }
 }
