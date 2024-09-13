@@ -68,21 +68,25 @@ public class Calculator implements ActionListener{
         textfield.setBounds(50, 25, 300, 50);
         textfield.setFont(font);
         textfield.setEditable(false);
+        textfield.setFocusable(false);
 
         sqrtfield = new JTextField();
         sqrtfield.setBounds(50, 5, 70, 20);
         sqrtfield.setFont(smolfont);
         sqrtfield.setEditable(false);
+        sqrtfield.setFocusable(false);
 
         logfield = new JTextField();
         logfield.setBounds(130, 5, 70, 20);
         logfield.setFont(smolfont);
         logfield.setEditable(false);
+        logfield.setFocusable(false);
 
         trigfield = new JTextField();
         trigfield.setBounds(210, 5, 70, 20);
         trigfield.setFont(smolfont);
         trigfield.setEditable(false);
+        trigfield.setFocusable(false);
 
         addbutton = new JButton("+");
         subbutton = new JButton("-");
@@ -247,8 +251,6 @@ public class Calculator implements ActionListener{
         mem9 = new JTextField("0.0");
         mem10 = new JTextField("0.0");
 
-
-
         mem1.setBounds(50+350, 25, 550, 50);
         mem2.setBounds(50+350, 75, 550, 50);
         mem3.setBounds(50+350, 125, 550, 50);
@@ -408,8 +410,34 @@ public class Calculator implements ActionListener{
         mem8.setText(String.valueOf(m8));
         mem9.setText(String.valueOf(m9));
         mem10.setText(String.valueOf(m10));
+    }
 
-        System.out.println("Memory reset");
+    void memoryReset() {
+        m1 = 0;
+        m2 = 0;
+        m3 = 0;
+        m4 = 0;
+        m5 = 0;
+        m6 = 0;
+        m7 = 0;
+        m8 = 0;
+        m9 = 0;
+        m10 = 0;
+
+        mem1.setText("0.0");
+        mem2.setText("0.0");
+        mem3.setText("0.0");
+        mem4.setText("0.0");
+        mem5.setText("0.0");
+        mem6.setText("0.0");
+        mem7.setText("0.0");
+        mem8.setText("0.0");
+        mem9.setText("0.0");
+        mem10.setText("0.0");
+
+        textfield.setText("");
+
+        System.out.println("Memory Reset");
     }
 
     @Override
@@ -456,31 +484,7 @@ public class Calculator implements ActionListener{
             System.out.println("Recalled memory 10");
         }
         if(e.getSource() == clear) {
-            m1 = 0;
-            m2 = 0;
-            m3 = 0;
-            m4 = 0;
-            m5 = 0;
-            m6 = 0;
-            m7 = 0;
-            m8 = 0;
-            m9 = 0;
-            m10 = 0;
-
-            mem1.setText("0.0");
-            mem2.setText("0.0");
-            mem3.setText("0.0");
-            mem4.setText("0.0");
-            mem5.setText("0.0");
-            mem6.setText("0.0");
-            mem7.setText("0.0");
-            mem8.setText("0.0");
-            mem9.setText("0.0");
-            mem10.setText("0.0");
-
-            textfield.setText("");
-
-            System.out.println("RAM cleared");
+            memoryReset();
         }
 
         // Calculator functions
@@ -753,6 +757,7 @@ public class Calculator implements ActionListener{
         if (e.getSource() == clrbutton) {
             textfield.setText("");
             sqrtfield.setText("");
+            logfield.setText("");
             trigfield.setText("");
             operator = "";
         }
